@@ -25,7 +25,7 @@ export default class ContentSelector {
 			//  handle situation when parent selector not found
 			if (this.parent === undefined) {
 				this.deferredCSSSelectorResponse.reject('parent selector not found');
-				this.alert('Parent element not found!');
+				this.alert('Не найден родительский элемент!');
 			}
 		} else {
 			this.parent = $('body')[0];
@@ -319,24 +319,24 @@ export default class ContentSelector {
 			'<div id="-selector-toolbar">' +
 			'<div class="list-item"><div class="selector-container"><div class="selector"></div></div></div>' +
 			'<div class="input-group-addon list-item">' +
-			'<input type="checkbox" title="Enable different type element selection" name="diferentElementSelection">' +
+			'<input type="checkbox" title="Включить выбор элементов различного типа" name="diferentElementSelection">' +
 			'<div class="popover top">' +
 			'<div class="close">×</div>' +
 			'<div class="arrow"></div>' +
 			'<div class="popover-content">' +
 			'<div class="txt">' +
-			'Different type element selection is disabled. If the element ' +
-			'you clicked should also be included then enable this and ' +
-			'click on the element again. Usually this is not needed.' +
+			'Выбор элементов различного типа выключен. Если элемент на ' +
+			'который вы кликнули тоже должен быть выбран, то включите эту ' +
+			'функцию и кликните ещё раз. Обычно это не нужно.' +
 			'</div>' +
 			'</div>' +
 			'</div>' +
 			'</div>' +
-			'<div class="list-item key-events"><div title="Click here to enable key press events for selection">Enable key events</div></div>' +
-			'<div class="list-item key-button key-button-select hide" title="Use S key to select element">S</div>' +
-			'<div class="list-item key-button key-button-parent hide" title="Use P key to select parent">P</div>' +
-			'<div class="list-item key-button key-button-child hide" title="Use C key to select child">C</div>' +
-			'<div class="list-item done-selecting-button">Done selecting!</div>' +
+			'<div class="list-item key-events"><div title="Включить события по клавишам">Клавиши</div></div>' +
+			'<div class="list-item key-button key-button-select hide" title="Используйте S для выбора элемента">S</div>' +
+			'<div class="list-item key-button key-button-parent hide" title="Используйте P для выбора родителя">P</div>' +
+			'<div class="list-item key-button key-button-child hide" title="Используйте C для выбора сына">C</div>' +
+			'<div class="list-item done-selecting-button">Закончить выбор!</div>' +
 			'</div>';
 		$('body').append($toolbar);
 

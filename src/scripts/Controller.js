@@ -19,43 +19,35 @@ export default class SitemapController {
 		this.selectorTypes = [
 			{
 				type: 'SelectorText',
-				title: 'Text',
-			},
-			{
-				type: 'ConstantValue',
-				title: 'Constant value',
-			},
-			{
-				type: 'SelectorInputValue',
-				title: 'Input value',
+				title: 'Текст',
 			},
 			{
 				type: 'SelectorLink',
-				title: 'Link',
+				title: 'Ссылка',
 			},
 			{
 				type: 'SelectorPopupLink',
-				title: 'Popup Link',
+				title: 'Всплывающая ссылка',
 			},
 			{
 				type: 'SelectorImage',
-				title: 'Image',
+				title: 'Изображение',
 			},
 			{
 				type: 'SelectorDocument',
-				title: 'Document',
+				title: 'Документ',
 			},
 			{
 				type: 'SelectorTable',
-				title: 'Table',
+				title: 'Таблица',
 			},
 			{
 				type: 'SelectorElementAttribute',
-				title: 'Element attribute',
+				title: 'Атрибут',
 			},
 			{
 				type: 'SelectorElementStyle',
-				title: 'Element style',
+				title: 'Стиль',
 			},
 			{
 				type: 'SelectorHTML',
@@ -63,19 +55,27 @@ export default class SitemapController {
 			},
 			{
 				type: 'SelectorElement',
-				title: 'Element',
+				title: 'Элемент',
 			},
 			{
 				type: 'SelectorElementScroll',
-				title: 'Element scroll down',
+				title: 'Прокрутка',
 			},
 			{
 				type: 'SelectorElementClick',
-				title: 'Element click',
+				title: 'Клик на элемент',
 			},
 			{
 				type: 'SelectorGroup',
-				title: 'Grouped',
+				title: 'Группа',
+			},
+			{
+				type: 'ConstantValue',
+				title: 'Константа',
+			},
+			{
+				type: 'SelectorInputValue',
+				title: 'Вставка значения',
 			},
 		];
 		this.init();
@@ -358,20 +358,20 @@ export default class SitemapController {
 				_id: {
 					validators: {
 						notEmpty: {
-							message: 'The sitemap id is required and cannot be empty',
+							message: 'Идентификатор схемы сайта обязателен и не может быть пустым',
 						},
 						stringLength: {
 							min: 3,
-							message: 'The sitemap id should be at least 3 characters long',
+							message: 'Длина идентифкатора схемы сайты должна быть как минимум 3 символа',
 						},
 						regexp: {
 							regexp: /^[a-z][a-z0-9_\$\(\)\+\-/]+$/,
-							message: 'Only lowercase characters (a-z), digits (0-9), or any of the characters _, $, (, ), +, -, and / are allowed. Must begin with a letter.',
+							message: 'Допустимые символы в идентифкаторе буквы(a-z), цифры(0-9), или другие символы _, $, (, ), +, -, /. Должен начинаться с буквы.',
 						},
 						// placeholder for sitemap id existance validation
 						callback: {
-							message: 'Sitemap with this id already exists',
-							callback: function() {
+							message: 'Схема сайта с таким идентифкатором уже существует',
+							callback: function(value, validator) {
 								return true;
 							},
 						},
@@ -380,10 +380,10 @@ export default class SitemapController {
 				startUrls: {
 					validators: {
 						notEmpty: {
-							message: 'The start URL is required and cannot be empty',
+							message: 'Стартовый URL обязателен и не может быть пустым',
 						},
 						callback: {
-							message: 'The start URLs are not valid. Please use "," as a seperator.',
+							message: 'Cтартовые URL-ы не валидны. Пожалуйста используйте ","  в качестве разделителя.',
 							callback: function(value) {
 								return Sitemap.validateStartUrls(value.split(','));
 							},
@@ -396,7 +396,7 @@ export default class SitemapController {
 							callback: function(value) {
 								if (!value) {
 									return {
-										message: 'Empty value is possible model',
+										message: 'Пустые значения модели возможны',
 										valid: true,
 									};
 								}
@@ -405,7 +405,7 @@ export default class SitemapController {
 								} catch (e) {
 									return {
 										valid: false,
-										message: 'JSON is not valid',
+										message: 'Невалидный JSON',
 									};
 								}
 							}.bind(this),
@@ -422,7 +422,7 @@ export default class SitemapController {
 		$('#viewport').html(sitemapForm);
 		this.initSitemapValidation();
 
-		// //XXX quickFix for new sitemap creation bug
+		//XXX quickFix for new sitemap creation bug
 		let validator = this.getFormValidator();
 		validator.updateStatus('model', 'VALID', 'callback');
 
@@ -436,15 +436,15 @@ export default class SitemapController {
 					validators: {
 						stringLength: {
 							min: 3,
-							message: 'The sitemap id should be at least 3 characters long',
+							message: 'Длина идентифкатора схемы сайты должна быть как минимум 3 символа',
 						},
 						regexp: {
 							regexp: /^[a-z][a-z0-9_\$\(\)\+\-/]+$/,
-							message: 'Only lowercase characters (a-z), digits (0-9), or any of the characters _, $, (, ), +, -, and / are allowed. Must begin with a letter.',
+							message: 'Допустимые символы в идентифкаторе буквы(a-z), цифры(0-9), или другие символы _, $, (, ), +, -, /. Должен начинаться с буквы.',
 						},
 						// placeholder for sitemap id existance validation
 						callback: {
-							message: 'Sitemap with this id already exists',
+							message: 'Схема сайта с таким идентифкатором уже существует',
 							callback: function(value, validator) {
 								validator.revalidateField('sitemapJSON');
 								return true;
@@ -455,10 +455,10 @@ export default class SitemapController {
 				sitemapJSON: {
 					validators: {
 						notEmpty: {
-							message: 'Sitemap JSON is required and cannot be empty',
+							message: 'JSON схемы сайта обязателен и не может быть пустым.',
 						},
 						callback: {
-							message: 'JSON is not valid',
+							message: 'Невалидный JSON',
 							callback: function(value, validator) {
 								try {
 									let sitemap = JSON.parse(value);
@@ -468,20 +468,20 @@ export default class SitemapController {
 										if (!sitemap.hasOwnProperty('_id')) {
 											return {
 												valid: false,
-												message: 'The sitemap id is required and cannot be empty',
+												message: 'Идентификатор схемы сайта обязателен и не может быть пустым',
 											};
 										}
 										if (sitemap._id.length < 3) {
 											return {
 												valid: false,
-												message: 'The sitemap id should be at least 3 characters long',
+												message: 'Длина идентифкатора схемы сайты должна быть как минимум 3 символа',
 											};
 										}
 										if (!sitemap._id.match('^[a-z][a-z0-9_\\$\\(\\)\\+\\-/]+$')) {
 											return {
 												valid: false,
 												message:
-													'Only lowercase characters (a-z), digits (0-9), or any of the characters _, $, (, ), +, -, and / are allowed. Must begin with a letter.',
+													'Допустимые символы в идентифкаторе буквы(a-z), цифры(0-9), или другие символы _, $, (, ), +, -, /. Должен начинаться с буквы.',
 											};
 										}
 									}
@@ -490,13 +490,13 @@ export default class SitemapController {
 									if (!sitemap.hasOwnProperty('startUrls')) {
 										return {
 											valid: false,
-											message: 'The start URL is required and cannot be empty',
+											message: 'Стартовый URL обязателен и не может быть пустым',
 										};
 									}
 									if (!Sitemap.validateStartUrls(sitemap.startUrls)) {
 										return {
 											valid: false,
-											message: 'The start URLs are not valid',
+											message: 'Стартовые URL-ы не валидны.',
 										};
 									}
 
@@ -507,11 +507,11 @@ export default class SitemapController {
 								} catch (e) {
 									return {
 										valid: false,
-										message: 'JSON is not valid',
+										message: 'Невалидный JSON.',
 									};
 								}
 								return {
-									message: 'Valid sitemap',
+									message: 'Валидная карта обхода',
 									valid: true,
 								};
 							}.bind(this),
@@ -762,11 +762,19 @@ export default class SitemapController {
 			parentSelectors: parentSelectors,
 		});
 		let selectors = sitemap.getDirectChildSelectors(parentSelectorId);
-		selectors.forEach(function(selector) {
-			let $selector = ich.SelectorListItem(selector);
-			$selector.data('selector', selector);
-			$selectorListPanel.find('tbody').append($selector);
-		});
+		selectors.forEach(
+			function(selector) {
+				for (let selectorType of this.selectorTypes) {
+					if (selectorType.type === selector.type) {
+						selector.ru_type = selectorType.title;
+						break;
+					}
+				}
+				let $selector = ich.SelectorListItem(selector);
+				$selector.data('selector', selector);
+				$selectorListPanel.find('tbody').append($selector);
+			}.bind(this)
+		);
 		$('#viewport').html($selectorListPanel);
 
 		return true;
@@ -810,29 +818,29 @@ export default class SitemapController {
 				id: {
 					validators: {
 						notEmpty: {
-							message: 'Selector id required and cannot be empty',
+							message: 'Идентифкатор cелектора обязателен и не может быть пустым',
 						},
 						stringLength: {
 							min: 3,
-							message: 'The selector id should be at least 3 characters long',
+							message: 'Идентифкатор селектора должен быть больше 3 символов',
 						},
 						regexp: {
 							regexp: /^[^_].*$/,
-							message: 'Selector id cannot start with an underscore _',
+							message: 'Идентифкатор не может начинаться с нижнего подчеркивания _',
 						},
 					},
 				},
 				selector: {
 					validators: {
 						notEmpty: {
-							message: 'Selector is required and cannot be empty',
+							message: 'Селектор необходим и не может быть пустым',
 						},
 					},
 				},
 				regex: {
 					validators: {
 						callback: {
-							message: 'JavaScript does not support regular expressions that can match 0 characters.',
+							message: 'JavaScript не поддерживает регулярные выражения которые соответствуют 0 символов.',
 							callback: function(value, validator) {
 								// allow no regex
 								if (!value) {
@@ -852,7 +860,7 @@ export default class SitemapController {
 				regexgroup: {
 					validators: {
 						callback: {
-							message: 'Regex group must be numeric',
+							message: 'Группа регулярного выражения должна быть числом',
 							callback: function(value, validator) {
 								if (value === '') {
 									return true;
@@ -865,38 +873,38 @@ export default class SitemapController {
 				clickElementSelector: {
 					validators: {
 						notEmpty: {
-							message: 'Click selector is required and cannot be empty',
+							message: 'Селектор клика обязателен и не может быть пустым.',
 						},
 					},
 				},
 				tableHeaderRowSelector: {
 					validators: {
 						notEmpty: {
-							message: 'Header row selector is required and cannot be empty',
+							message: 'Селектор заголовка таблицы обязателен и не может быть пустым.',
 						},
 					},
 				},
 				tableDataRowSelector: {
 					validators: {
 						notEmpty: {
-							message: 'Data row selector is required and cannot be empty',
+							message: 'Селектор данных таблицы обязателен и не может быть пустым.',
 						},
 					},
 				},
 				delay: {
 					validators: {
 						numeric: {
-							message: 'Delay must be numeric',
+							message: 'Задержка должна быть числовым значением',
 						},
 					},
 				},
 				paginationLimit: {
 					validators: {
 						numeric: {
-							message: 'Pagination limit must be numeric or empty',
+							message: 'Лимит страниц должен быть числовым или пустым',
 						},
 						callback: {
-							message: 'Pagination limit must be 1 at least',
+							message: 'Лимит страниц должен быть больше 1',
 							callback: function(value, validator) {
 								if (!value) {
 									return true;
@@ -909,10 +917,10 @@ export default class SitemapController {
 				parentSelectors: {
 					validators: {
 						notEmpty: {
-							message: 'You must choose at least one parent selector',
+							message: 'Вы должны выбрать хотя бы один родительский селектор.',
 						},
 						callback: {
-							message: 'Cannot handle recursive element selectors',
+							message: 'Невозможно обработать рекурсивные селекторы элементов.',
 							callback: function(value, validator, $field) {
 								let sitemap = this.getCurrentlyEditedSelectorSitemap();
 								return !sitemap.selectors.hasRecursiveElementSelectors();
@@ -1202,13 +1210,13 @@ export default class SitemapController {
 				requestInterval: {
 					validators: {
 						notEmpty: {
-							message: 'The request interval is required and cannot be empty',
+							message: 'Задержка между запросами обязательна и не может быть пустой.',
 						},
 						numeric: {
-							message: 'The request interval must be numeric',
+							message: 'Задержка между запросами должна быть числом',
 						},
 						callback: {
-							message: 'The request interval must be atleast 2000 milliseconds',
+							message: 'Задержка между запросами должна быть не меньше 2000 миллисекунд',
 							callback: function(value, validator) {
 								return value >= 2000;
 							},
@@ -1218,23 +1226,23 @@ export default class SitemapController {
 				requestIntervalRandomness: {
 					validators: {
 						notEmpty: {
-							message: 'The request interval randomness is required and cannot be empty',
+							message: 'Случайность в задержке между запросами обязательна и не может быть пустой.',
 						},
 						numeric: {
-							message: 'The request interval randomness must be numeric',
+							message: 'Случайность в задержке между запросами должна быть числом',
 						},
 					},
 				},
 				pageLoadDelay: {
 					validators: {
 						notEmpty: {
-							message: 'The page load delay is required and cannot be empty',
+							message: 'Задержка загрузки страницы обязательна и не может быть пустой.',
 						},
 						numeric: {
-							message: 'The page laod delay must be numeric',
+							message: 'Задержка загрузки страницы должна быть числом.',
 						},
 						callback: {
-							message: 'The page load delay must be atleast 500 milliseconds',
+							message: 'Задержка загрузки страницы должна быть не меньше 500 миллисекунд',
 							callback: function(value, validator) {
 								return value >= 500;
 							},
@@ -1430,11 +1438,6 @@ export default class SitemapController {
 
 		this.getSelectorHTML().done(
 			function(html) {
-				// let verticalTable = this.getCurrentlyEditedSelector().verticalTable;
-				// let tableHeaderRowSelector = SelectorTable.getTableHeaderRowSelectorFromTableHTML(html, verticalTable);
-				// let tableDataRowSelector = SelectorTable.getTableDataRowSelectorFromTableHTML(html, verticalTable);
-				// $('input[name=tableHeaderRowSelector]').val(tableHeaderRowSelector);
-				// $('input[name=tableDataRowSelector]').val(tableDataRowSelector);
 				let headerColumns = SelectorTable.getTableHeaderColumnsFromHTML(value, html);
 				this.renderTableHeaderColumns(headerColumns);
 			}.bind(this)
