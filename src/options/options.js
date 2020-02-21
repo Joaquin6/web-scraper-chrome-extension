@@ -6,9 +6,9 @@ $(function() {
 	// popups for Storage setting input fields
 	$('#sitemapDb')
 		.popover({
-			title: 'Database for sitemap storage',
+			title: 'База данных для карт обхода',
 			html: true,
-			content: 'CouchDB database url<br /> http://example.com/scraper-sitemaps/',
+			content: 'Url адрес базы CouchDB <br /> http://example.com/scraper-sitemaps/',
 			placement: 'bottom',
 		})
 		.blur(function() {
@@ -17,9 +17,9 @@ $(function() {
 
 	$('#dataDb')
 		.popover({
-			title: 'Database for scraped data',
+			title: 'База данных для собранных данных',
 			html: true,
-			content: 'CouchDB database url. For each sitemap a new DB will be created.<br />http://example.com/',
+			content: 'Url адрес базы CouchDB. Для каждой карты обхода будет создана новая база данных.<br />http://example.com/',
 			placement: 'bottom',
 		})
 		.blur(function() {
@@ -28,9 +28,8 @@ $(function() {
 
 	$('#restUrl')
 		.popover({
-			title: 'Url to push your sitemaps.',
 			html: true,
-			content: 'Rest api url.',
+			content: 'Url адрес внешнего хранилища для карт обхода.',
 			placement: 'bottom',
 		})
 		.blur(function() {
@@ -88,13 +87,13 @@ $(function() {
 			.then(() => {
 				$('.alert')
 					.attr('id', 'success')
-					.text('Options successfully updated.')
+					.text('Опции успешно сохранены.')
 					.show();
 			})
 			.catch(() => {
 				$('.alert')
 					.attr('id', 'error')
-					.text('Failed to save options ' + chrome.runtime.lastError.message)
+					.text('Ошибка при сохранении опций ' + browser.runtime.lastError.message)
 					.show();
 			});
 		return false;

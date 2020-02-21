@@ -1,13 +1,13 @@
 <form class="form-horizontal" role="form" id="edit-selector">
 	<div class="form-group">
-		<label for="selectorId" class="col-sm-2 control-label">Id</label>
+		<label for="selectorId" class="col-sm-2 control-label">Идентификатор</label>
 		<div class="col-sm-8">
-			<input type="text" class="form-control" name="id" id="selectorId" placeholder="Selector Id" value="{{selector.id}}" />
+			<input type="text" class="form-control" name="id" id="selectorId" placeholder="Идентификатор селектора" value="{{selector.id}}" />
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label for="type" class="col-sm-2 control-label">Type</label>
+		<label for="type" class="col-sm-2 control-label">Тип</label>
 
 		<div class="input-group col-sm-8">
 			<select class="form-control" id="type" name="type">
@@ -19,14 +19,14 @@
 	</div>
 
 	<div class="form-group feature feature-selector">
-		<label for="selector" class="col-sm-2 control-label">Selector</label>
+		<label for="selector" class="col-sm-2 control-label">CSS селектор</label>
 
 		<div class="col-sm-8">
 			<div class="input-group">
 				<span class="input-group-btn">
-					<button class="btn btn-default" action="select-selector" type="button">Select</button>
-					<button class="btn btn-default" action="preview-selector" type="button" data-toggle="button">Element preview</button>
-					<button class="btn btn-default" action="preview-selector-data" type="button">Data preview</button>
+					<button class="btn btn-default" action="select-selector" type="button">Выбрать</button>
+					<button class="btn btn-default" action="preview-selector" type="button" data-toggle="button">Предпросмотр элемента</button>
+					<button class="btn btn-default" action="preview-selector-data" type="button">Предпросмотор данных</button>
 				</span>
 				<input type="text" class="form-control selector-value" id="selector" name="selector" value="{{selector.selector}}" />
 			</div>
@@ -34,13 +34,13 @@
 	</div>
 
 	<div class="form-group feature feature-clickElementSelector">
-		<label for="clickElementSelector" class="col-sm-2 control-label">Click selector</label>
+		<label for="clickElementSelector" class="col-sm-2 control-label">Селектор клика</label>
 
 		<div class="col-sm-8">
 			<div class="input-group">
 				<span class="input-group-btn">
-					<button class="btn btn-default" action="select-selector" type="button">Select</button>
-					<button class="btn btn-default" action="preview-click-element-selector" type="button" data-toggle="button">Element preview</button>
+					<button class="btn btn-default" action="select-selector" type="button">Выбрать</button>
+					<button class="btn btn-default" action="preview-click-element-selector" type="button" data-toggle="button">Предпросмотр элемента</button>
 				</span>
 				<input type="text" class="form-control selector-value" id="clickElementSelector" name="clickElementSelector" value="{{selector.clickElementSelector}}" />
 			</div>
@@ -49,13 +49,13 @@
 
 	<!-- tableHeaderSelector -->
 	<div class="form-group feature feature-tableHeaderRowSelector">
-		<label for="tableHeaderRowSelector" class="col-sm-2 control-label">Header row selector</label>
+		<label for="tableHeaderRowSelector" class="col-sm-2 control-label">Селектор строки заголовка</label>
 		<div class="col-sm-8">
 			<div class="input-group">
 				<span class="input-group-btn">
-					<button class="btn btn-default" action="select-table-header-row-selector" type="button">Select</button>
-					<button class="btn btn-default" action="preview-table-row-selector" type="button" data-toggle="button">Element preview</button>
-					<button class="btn btn-default" action="refresh-header-row-selector" title="Refresh if you manually changed the selector" type="button">Refresh</button>
+					<button class="btn btn-default" action="select-table-header-row-selector" type="button">Выбрать</button>
+					<button class="btn btn-default" action="preview-table-row-selector" type="button" data-toggle="button">Предпросмотр элемента</button>
+					<button class="btn btn-default" action="refresh-header-row-selector" title="Refresh if you manually changed the selector" type="button">Обновить</button>
 				</span>
 				<input type="text" class="form-control selector-value" id="tableHeaderRowSelector" name="tableHeaderRowSelector" value="{{selector.tableHeaderRowSelector}}" />
 			</div>
@@ -64,12 +64,12 @@
 
 	<!-- tableRowSelector -->
 	<div class="form-group feature feature-tableDataRowSelector">
-		<label for="tableDataRowSelector" class="col-sm-2 control-label">Data rows selector</label>
+		<label for="tableDataRowSelector" class="col-sm-2 control-label">Селектор строк с данными</label>
 		<div class="col-sm-8">
 			<div class="input-group">
 				<span class="input-group-btn">
-					<button class="btn btn-default" action="select-table-data-row-selector" type="button">Select</button>
-					<button class="btn btn-default" action="preview-table-row-selector" type="button" data-toggle="button">Element preview</button>
+					<button class="btn btn-default" action="select-table-data-row-selector" type="button">Выбрать</button>
+					<button class="btn btn-default" action="preview-table-row-selector" type="button" data-toggle="button">Предпросмотр элементов</button>
 				</span>
 				<input type="text" class="form-control selector-value" id="tableDataRowSelector" name="tableDataRowSelector" value="{{selector.tableDataRowSelector}}" />
 			</div>
@@ -78,19 +78,20 @@
 
 	<!-- tableAddMissingColumns -->
 	<div class="form-group feature feature-tableAddMissingColumns">
-		<label for="tableAddMissingColumns" class="col-sm-2 control-label">Extract missing columns</label>
+		<label for="tableAddMissingColumns" class="col-sm-2 control-label">Извлечь недостающие колонки</label>
 		<div class="col-sm-8">
 			<div class="checkbox">
 				<label>
-					<input type="checkbox" id="tableAddMissingColumns" name="tableAddMissingColumns" {{#selector.tableAddMissingColumns}} checked="checked"
-					{{/selector.tableAddMissingColumns}} >
+					<input id="tableAddMissingColumns" type="checkbox" name="tableAddMissingColumns" {{#selector.tableAddMissingColumns}} checked="checked"
+					{{/selector.tableAddMissingColumns}}>
 				</label>
 			</div>
 		</div>
 	</div>
 
+	<!-- verticalTable -->
 	<div class="form-group feature feature-verticalTable">
-		<label for="verticalTable" class="col-sm-2 control-label">This is vertical table</label>
+		<label for="verticalTable" class="col-sm-2 control-label">Это вертикальная таблица</label>
 		<div class="col-sm-8">
 			<div class="checkbox">
 				<label>
@@ -102,44 +103,46 @@
 
 	<!-- ClickType -->
 	<div class="form-group feature feature-clickType">
-		<label for="clickType" class="col-sm-2 control-label">Click type</label>
+		<label for="clickType" class="col-sm-2 control-label">Тип клика</label>
 
 		<div class="input-group col-sm-8">
 			<select class="form-control" id="clickType" name="clickType">
-				<option value="clickOnce">Click once (pagination, tabs)</option>
-				<option value="clickMore">Click more (click to load more elements. Stops when no new elements with unique text content are found.) </option>
+				<option value="clickOnce">Кликнуть один раз (страницы, вкладки)</option>
+				<option value="clickMore"
+					>Кликнуть много (Нажмите, чтобы загрузить больше элементов. Останавливается, когда не найдено новых элементов с уникальным текстовым содержимым.)
+				</option>
 			</select>
 		</div>
 	</div>
 
 	<!-- Pagination Limit -->
 	<div class="form-group feature feature-paginationLimit">
-		<label for="paginationLimit" class="col-sm-2 control-label">Pagination limit</label>
+		<label for="paginationLimit" class="col-sm-2 control-label">Лимит страниц</label>
 
 		<div class="col-sm-8">
-			<input type="text" class="form-control" name="paginationLimit" id="paginationLimit" placeholder="empty = unlimited" value="{{selector.paginationLimit}}" />
+			<input type="text" class="form-control" name="paginationLimit" id="paginationLimit" placeholder="пустой = бесконечно" value="{{selector.paginationLimit}}" />
 		</div>
 	</div>
 
 	<!-- clickElementUniquenessType -->
 	<div class="form-group feature feature-clickElementUniquenessType">
-		<label for="clickElementUniquenessType" class="col-sm-2 control-label">Click element uniqueness</label>
+		<label for="clickElementUniquenessType" class="col-sm-2 control-label">Уникальность элементов клика</label>
 		<div class="input-group col-sm-8">
 			<select class="form-control" id="clickElementUniquenessType" name="clickElementUniquenessType">
-				<option value="uniqueText">Unique Text</option>
-				<option value="uniqueHTMLText">Unique HTML+Text</option>
-				<option value="uniqueHTML">Unique HTML</option>
-				<option value="uniqueCSSSelector">unique CSS Selector</option>
+				<option value="uniqueText">Уникальный текст</option>
+				<option value="uniqueHTMLText">Уникальный HTML и текст</option>
+				<option value="uniqueHTML">Уникальный HTML</option>
+				<option value="uniqueCSSSelector">Уникальный CSS Selector</option>
 			</select>
 		</div>
 	</div>
 
 	<div class="form-group feature feature-multiple">
-		<label for="multiple" class="col-sm-2 control-label">Multiple Values</label>
+		<label for="multiple" class="col-sm-2 control-label">Выбрать много</label>
 		<div class="col-sm-8">
 			<div class="checkbox">
 				<label>
-					<input type="checkbox" id="multiple" name="multiple" {{#selector.multiple}} checked="checked" {{/selector.multiple}} />
+					<input id="multiple" type="checkbox" name="multiple" {{#selector.multiple}} checked="checked" {{/selector.multiple}}>
 				</label>
 			</div>
 		</div>
@@ -147,12 +150,12 @@
 
 	<!-- discardInitialElements -->
 	<div class="form-group feature feature-discardInitialElements">
-		<label for="discardInitialElements" class="col-sm-2 control-label">Discard elements</label>
+		<label for="discardInitialElements" class="col-sm-2 control-label">Отменить элементы</label>
 		<div class="col-sm-8">
 			<div class="checkbox">
 				<label>
-					<input type="checkbox" id="discardInitialElements" name="discardInitialElements" {{#selector.discardInitialElements}} checked="checked"
-					{{/selector.discardInitialElements}} /> Discard initial elements that are available before click
+					<input id="discardInitialElements" type="checkbox" name="discardInitialElements" {{#selector.discardInitialElements}} checked="checked"
+					{{/selector.discardInitialElements}}> Отменить начальные элементы, которые доступны до нажатия
 				</label>
 			</div>
 		</div>
@@ -160,22 +163,22 @@
 
 	<!-- downloadImage -->
 	<div class="form-group feature feature-downloadImage">
-		<label for="downloadImage" class="col-sm-2 control-label">Download image</label>
+		<label for="downloadImage" class="col-sm-2 control-label">Сохранить картинку</label>
 		<div class="col-sm-8">
 			<div class="checkbox">
 				<label>
-					<input type="checkbox" id="downloadImage" name="downloadImage" {{#selector.downloadImage}} checked="checked" {{/selector.downloadImage}} />
+					<input id="downloadImage" type="checkbox" name="downloadImage" {{#selector.downloadImage}} checked="checked" {{/selector.downloadImage}}>
 				</label>
 			</div>
 		</div>
 	</div>
 	<!-- downloadDocument-->
 	<div class="form-group feature feature-downloadDocument">
-		<label for="downloadDocument" class="col-sm-2 control-label">Download document</label>
+		<label for="downloadDocument" class="col-sm-2 control-label">Сохранить документ</label>
 		<div class="col-sm-8">
 			<div class="checkbox">
 				<label>
-					<input type="checkbox" id="downloadDocument" name="downloadDocument" {{#selector.downloadDocument}} checked="checked" {{/selector.downloadDocument}} />
+					<input id="downloadDocument" type="checkbox" name="downloadDocument" {{#selector.downloadDocument}} checked="checked" {{/selector.downloadDocument}}>
 				</label>
 			</div>
 		</div>
@@ -183,114 +186,141 @@
 
 	<!-- extractAttribute -->
 	<div class="form-group feature feature-extractAttribute">
-		<label for="extractAttribute" class="col-sm-2 control-label">Attribute name</label>
+		<label for="extractAttribute" class="col-sm-2 control-label">Имя атрибута</label>
 
 		<div class="col-sm-8">
-			<input type="text" class="form-control" name="extractAttribute" id="extractAttribute" placeholder="Attribute name to extract" value="{{selector.extractAttribute}}" />
+			<input
+				type="text"
+				class="form-control"
+				name="extractAttribute"
+				id="extractAttribute"
+				placeholder="Имя аттрибута для извлечения"
+				value="{{selector.extractAttribute}}"
+			/>
 		</div>
 	</div>
 
 	<!-- value -->
 	<div class="form-group feature feature-value">
-		<label for="value" class="col-sm-2 control-label">Value</label>
+		<label for="value" class="col-sm-2 control-label">Значение</label>
 
 		<div class="col-sm-8">
-			<input type="text" class="form-control" name="value" id="value" placeholder="Text value to insert" value="{{selector.value}}" />
+			<input type="text" class="form-control" name="value" id="value" placeholder="Значения текста для вставки" value="{{selector.value}}" />
 		</div>
 	</div>
 
 	<!-- extractStyle -->
 	<div class="form-group feature feature-extractStyle">
-		<label for="extractStyle" class="col-sm-2 control-label">Style name</label>
+		<label for="extractStyle" class="col-sm-2 control-label">Имя стиля</label>
 
 		<div class="col-sm-8">
-			<input type="text" class="form-control" name="extractStyle" id="extractStyle" placeholder="Style name to extract" value="{{selector.extractStyle}}" />
+			<input type="text" class="form-control" name="extractStyle" id="extractStyle" placeholder="Имя атрибута для извлечения" value="{{selector.extractStyle}}" />
 		</div>
 	</div>
 
 	<div class="form-group feature feature-textmanipulation">
-		<label class="col-sm-2 control-label">String Manipulation</label>
+		<label class="col-sm-2 control-label">Преобразования строки</label>
 		<div class="col-sm-8">
 			<div class="form-inline">
-				<label for="regex"
-					>Regex match:
-					<input type="text" class="form-control col-sm-8" name="regex" id="regex" placeholder="Regex" value="{{selector.textmanipulation.regex}}" />
-				</label>
-				<label for="regexgroup"
-					>Regex group:
-					<input type="text" class="form-control col-sm-2" name="regexgroup" id="regexgroup" placeholder="0" value="{{selector.textmanipulation.regexgroup}}" />
-				</label>
-				<span class="help-block" style="margin-top: -5px;">Trim will be applied before regex.</span>
+				<label
+					>Регулярное выражение:<input
+						type="text"
+						class="form-control col-sm-8"
+						name="regex"
+						id="regex"
+						placeholder="Регулярное выражение"
+						value="{{selector.textmanipulation.regex}}"
+				/></label>
+
+				<label
+					>Группа регулярного выражения:<input
+						type="text"
+						class="form-control col-sm-2"
+						name="regexgroup"
+						id="regexgroup"
+						placeholder="0"
+						value="{{selector.textmanipulation.regexgroup}}"
+				/></label>
+
+				<span class="help-block" style="margin-top: -5px;">Перед применением регулярного выражения текст будет обрезан.</span>
 			</div>
 			<div class="checkbox">
-				<label for="removeHtml">Remove HTML </label>
-				<input type="checkbox" id="removeHtml" name="removeHtml" {{#selector.textmanipulation.removeHtml}} checked="checked" {{/selector.textmanipulation.removeHtml}} />
+				<label
+					><input type="checkbox" name="removeHtml" {{#selector.textmanipulation.removeHtml}} checked="checked" {{/selector.textmanipulation.removeHtml}}> Убрать
+					HTML</label
+				>
 			</div>
 			<div class="checkbox">
-				<label for="trimText">Trim Text</label>
-				<input type="checkbox" id="trimText" name="trimText" {{#selector.textmanipulation.trimText}} checked="checked" {{/selector.textmanipulation.trimText}} />
+				<label
+					><input type="checkbox" name="trimText" {{#selector.textmanipulation.trimText}} checked="checked" {{/selector.textmanipulation.trimText}}> Обрезка текста</label
+				>
 			</div>
 			<div class="form-inline" style="padding-top: 7px">
-				<label for="replaceText"
-					>Replace text:
-					<input
+				<label
+					>Заменить текст:<input
 						type="text"
 						class="form-control col-sm-6"
 						name="replaceText"
 						id="replaceText"
-						placeholder="Replace text"
+						placeholder="Выражение заменяемого текста"
 						value="{{selector.textmanipulation.replaceText}}"
-					/>
-				</label>
-				<label for="replacementText"
-					>Replacement text:
-					<input
+				/></label>
+
+				<label
+					>Замена:<input
 						type="text"
 						class="form-control col-sm-6"
 						name="replacementText"
 						id="replacementText"
-						placeholder="Replacement text"
+						placeholder="Текст замены"
 						value="{{selector.textmanipulation.replacementText}}"
-					/>
-				</label>
+				/></label>
 			</div>
 			<div class="form-inline">
-				<label for="textPrefix"
-					>Text Prefix:
-					<input type="text" class="form-control col-sm-6" name="textPrefix" id="textPrefix" placeholder="Prefix" value="{{selector.textmanipulation.textPrefix}}" />
-				</label>
-				<label for="textSuffix"
-					>Text Suffix:
-					<input type="text" class="form-control col-sm-6" name="textSuffix" id="textSuffix" placeholder="Suffix" value="{{selector.textmanipulation.textSuffix}}" />
+				<label
+					>Префикс текста:<input
+						type="text"
+						class="form-control col-sm-6"
+						name="textPrefix"
+						id="textPrefix"
+						placeholder="Префикс"
+						value="{{selector.textmanipulation.textPrefix}}"
+				/></label>
+
+				<label
+					>Суффикс текста:
+					<input type="text" class="form-control col-sm-6" name="textSuffix" id="textSuffix" placeholder="Суффикс" value="{{selector.textmanipulation.textSuffix}}" />
 				</label>
 			</div>
 		</div>
 	</div>
 
 	<div class="form-group feature feature-delay">
-		<label for="delay" class="col-sm-2 control-label">Delay (ms)</label>
+		<label for="delay" class="col-sm-2 control-label">Задержка (ms)</label>
 
 		<div class="col-sm-8">
-			<input type="text" class="form-control" name="delay" id="delay" placeholder="delay" value="{{selector.delay}}" />
+			<input type="text" class="form-control" name="delay" id="delay" placeholder="Задержка" value="{{selector.delay}}" />
 		</div>
 	</div>
 
 	<div class="form-group feature feature-stringReplacement">
-		<label for="replace" class="col-sm-2 control-label">Replace</label>
+		<label for="replace" class="col-sm-2 control-label">Преобразования строки</label>
 
 		<div class="col-sm-8">
 			<div id="replace" class="input-group">
-				<label
-					>Replace text:
-					<input type="text" class="form-control col-sm-6" name="replaceString" id="replaceString" placeholder="Replace text" value="{{selector.replaceString}}" />
+				<label>
+					Заменить текст:
+					<input type="text" class="form-control col-sm-6" name="replaceString" id="replaceString" placeholder="Заменяемый текст" value="{{selector.replaceString}}" />
 				</label>
+
 				<label
-					>Replacement text:<input
+					>Замена:
+					<input
 						type="text"
 						class="form-control col-sm-6"
 						name="replacementString"
 						id="replacementString"
-						placeholder="Replacement text"
+						placeholder="Текст замены"
 						value="{{selector.replacementString}}"
 					/>
 				</label>
@@ -299,7 +329,7 @@
 	</div>
 
 	<div class="form-group">
-		<label for="parentSelectors" class="col-sm-2 control-label">Parent Selectors</label>
+		<label for="parentSelectors" class="col-sm-2 control-label">Родительские селекторы</label>
 
 		<div class="input-group col-sm-8">
 			<select multiple class="form-control" id="parentSelectors" name="parentSelectors">
@@ -311,15 +341,15 @@
 	</div>
 
 	<div class="form-group feature feature-columns">
-		<label class="col-sm-2 control-label">Table columns</label>
+		<label class="col-sm-2 control-label">Таблица колонок</label>
 
 		<div class="col-sm-8">
 			<table class="table table-bordered table-condensed">
 				<thead>
 					<tr>
-						<th>Column</th>
-						<th>Result key</th>
-						<th>Include into result</th>
+						<th>Колонка</th>
+						<th>Имя колонки</th>
+						<th>Добавить в результат</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -327,9 +357,7 @@
 					<tr>
 						<td><input class="column-header" type="hidden" name="column[header][]" value="{{header}}" />{{header}}</td>
 						<td><input class="column-name form-control" type="text" name="column[name][]" value="{{name}}" /></td>
-						<td>
-							<input class="column-extract" type="checkbox" name="column[extract][]" {{#extract}} checked="checked" {{/extract}}>
-						</td>
+						<td><input class="column-extract" type="checkbox" name="column[extract][]" {{#extract}} checked="checked" {{/extract}}></td>
 					</tr>
 					{{/selector.columns}}
 				</tbody>
@@ -339,8 +367,8 @@
 
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-8">
-			<button class="btn btn-primary" action="save-selector">Save selector</button>
-			<button action="cancel-selector-editing" class="btn btn-default">Cancel</button>
+			<button class="btn btn-primary" action="save-selector">Сохранить селектор</button>
+			<button action="cancel-selector-editing" class="btn btn-default">Отмена</button>
 		</div>
 	</div>
 
