@@ -47,6 +47,12 @@ export default class Selector {
 		// }
 	}
 
+	afterSelect(selector, controller) {
+		this.selector = selector;
+		controller._editSelector(this);
+		return Promise.resolve();
+	}
+
 	/**
 	 * Manipulates return data from selector.
 	 * @param data

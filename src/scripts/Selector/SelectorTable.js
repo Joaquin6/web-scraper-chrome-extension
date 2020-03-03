@@ -206,7 +206,7 @@ export default class SelectorTable extends Selector {
 		}
 	}
 
-	static getTableHeaderRowSelectorFromTableHTML(html, verticalTable) {
+	getTableHeaderRowSelectorFromTableHTML(html, verticalTable) {
 		let $table = $(html);
 		let firstRow = $table.find('tr:first-child');
 
@@ -243,7 +243,7 @@ export default class SelectorTable extends Selector {
 		}
 	}
 
-	static getTableDataRowSelectorFromTableHTML(html, verticalTable) {
+	getTableDataRowSelectorFromTableHTML(html, verticalTable) {
 		let $table = $(html);
 		if ($table.find('thead tr:has(td:not(:empty)), thead tr:has(th:not(:empty))').length) {
 			return 'tbody tr';
@@ -268,7 +268,7 @@ export default class SelectorTable extends Selector {
 	 * @param html
 	 * @param verticalTable
 	 */
-	static getTableHeaderColumnsFromHTML(headerRowSelector, html, verticalTable) {
+	getTableHeaderColumnsFromHTML(headerRowSelector, html, verticalTable) {
 		let $table = $(html);
 		let $headerRowColumns = $table.find(headerRowSelector);
 
@@ -293,5 +293,15 @@ export default class SelectorTable extends Selector {
 			}
 		});
 		return columns;
+	}
+
+	async afterSelect(cssSelector, controller) {
+		await super.afterSelect(cssSelector, controller);
+		let html = await controller.getSelectorHTML(this);
+		this.tableHeaderRowSelector = this.getTableHeaderRowSelectorFromTableHTML(html, this.verticalTable);
+		this.tableDataRowSelector = this.getTableDataRowSelectorFromTableHTML(html, this.verticalTable);
+		let headerColumns = this.getTableHeaderColumnsFromHTML(this.tableHeaderRowSelector, html, this.verticalTable);
+		controller._editSelector(this);
+		controller.renderTableHeaderColumns(headerColumns);
 	}
 }
